@@ -24,7 +24,8 @@ fi
 
 # Needed for nodejs.
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sSL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+# curl -sSL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo add-apt-repository -y ppa:git-core/ppa
 
 sudo apt-get update
@@ -38,8 +39,8 @@ sudo apt-get clean
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable --quiet-curl
 source ~/.rvm/scripts/rvm
-rvm install 2.1.7 --quiet-curl
-rvm use 2.1.7 --default
+rvm install 2.4.1 --quiet-curl
+rvm use 2.4.1 --default
 ruby --version
 
 # https://github.com/github/pages-gem
@@ -80,7 +81,7 @@ fi
 jekyll=$(which jekyll)
 wrapper="${jekyll/bin/wrappers}"
 log="/home/vagrant/jekyll.log"
-run="start-stop-daemon --start --chuid vagrant:vagrant --exec $wrapper -- serve --host 0.0.0.0 --source $clonedir --destination /home/vagrant/_site --watch --force_polling >> $log 2>&1 &"
+run="start-stop-daemon --start --chuid vagrant:vagrant --exec $wrapper -- serve --host 0.0.0.0 --source $clonedir --destination /home/vagrant/_site --drafts --watch --force_polling >> $log 2>&1 &"
 eval $run
 
 cat << UPSTART | sudo tee /etc/init/jekyll.conf > /dev/null
