@@ -17,5 +17,5 @@ log="/home/vagrant/jekyll.log"
 #   FileUtils core module, see http://stackoverflow.com/q/33091988
 
 echo "Monitoring $clonedir -- Jekyll is accessible over http://localhost:4000"
-run="start-stop-daemon --start --chuid vagrant:vagrant --exec $wrapper -- serve --host 0.0.0.0 --source $clonedir --destination /home/vagrant/_site --watch --force_polling >> $log 2>&1 &"
+run="start-stop-daemon --start --chuid vagrant:vagrant --exec $wrapper -- serve --host 0.0.0.0 --source $clonedir --destination /home/vagrant/_site --drafts --watch --force_polling >> $log 2>&1 &"
 eval $run
